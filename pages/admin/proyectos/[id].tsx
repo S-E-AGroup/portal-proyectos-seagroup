@@ -27,7 +27,7 @@ import {
 import { FlowChart, PhChart, MultiParamChart } from "@/components/charts/WaterCharts";
 import { Project } from "@/types";
 import { requireAdmin } from "@/lib/auth";
-import { getProjectById } from "@/lib/mock/data";
+import { getProjectById } from "@/lib/mock/store";
 import {
   formatDate,
   formatDateShort,

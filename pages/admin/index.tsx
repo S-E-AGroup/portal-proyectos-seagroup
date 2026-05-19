@@ -13,18 +13,20 @@ import {
   Calendar,
   ArrowRight,
   Plus,
+  UserPlus,
 } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Card, CardContent, CardHeader, SectionTitle, StatCard } from "@/components/ui";
-import { Project } from "@/types";
+import { Project, User } from "@/types";
 import { requireAdmin, formatDate, getStatusColor } from "@/lib/auth";
-import { MOCK_PROJECTS } from "@/lib/mock/data";
+import { getAllProjects, getClientUsers } from "@/lib/mock/store";
 
 interface AdminPanelProps {
   projects: Project[];
+  totalClients: number;
 }
 
-export default function AdminPanel({ projects }: AdminPanelProps) {
+export default function AdminPanel({ projects, totalClients }: AdminPanelProps) {
   const activeProjects = projects.filter((p) => p.status === "activo").length;
   const totalVisits = projects.reduce((acc, p) => acc + p.visits.length, 0);
   const totalSamples = projects.reduce((acc, p) => acc + p.samples.length, 0);
@@ -53,19 +55,37 @@ export default function AdminPanel({ projects }: AdminPanelProps) {
             description="En ejecución"
           />
           <StatCard
+            title="Clientes Registrados"
+            value={totalClients}
+            icon={<Users size={18} />}
+            color="cyan"
+            description="Con acceso al portal"
+          />
+          <StatCard
             title="Visitas Realizadas"
             value={totalVisits}
             icon={<Calendar size={18} />}
-            color="cyan"
+            color="amber"
             description="Total acumulado"
           />
-          <StatCard
-            title="Muestras Tomadas"
-            value={totalSamples}
-            icon={<Users size={18} />}
-            color="amber"
-            description="Total registradas"
-          />
+        </div>
+
+        {/* Acciones rápidas */}
+        <div className="flex flex-wrap gap-3 mb-6">
+          <Link
+            href="/admin/proyectos/nuevo"
+            className="inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+          >
+            <Plus size={16} />
+            Nuevo Proyecto
+          </Link>
+          <Link
+            href="/admin/clientes/nuevo"
+            className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+          >
+            <UserPlus size={16} />
+            Nuevo Cliente
+          </Link>
         </div>
 
         {/* Lista de proyectos */}
@@ -74,15 +94,6 @@ export default function AdminPanel({ projects }: AdminPanelProps) {
             <SectionTitle
               title="Proyectos"
               subtitle={`${projects.length} proyectos en el sistema`}
-              action={
-                <Link
-                  href="/admin/proyectos/nuevo"
-                  className="inline-flex items-center gap-1.5 bg-cyan-500 hover:bg-cyan-600 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
-                >
-                  <Plus size={14} />
-                  Nuevo proyecto
-                </Link>
-              }
             />
           </CardHeader>
           <CardContent className="p-0">
@@ -176,7 +187,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      projects: JSON.parse(JSON.stringify(MOCK_PROJECTS)),
+      projects: JSON.parse(JSON.stringify(getAllProjects())),
+      totalClients: getClientUsers().length,
     },
   };
 };

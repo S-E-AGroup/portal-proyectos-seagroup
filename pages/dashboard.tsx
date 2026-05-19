@@ -25,7 +25,7 @@ import {
 import { FlowChart, PhChart } from "@/components/charts/WaterCharts";
 import { Project } from "@/types";
 import { requireAuth } from "@/lib/auth";
-import { getProjectByClientId, getProjectById } from "@/lib/mock/data";
+import { getProjectByClientId, getProjectById } from "@/lib/mock/store";
 import {
   formatDate,
   formatDateShort,

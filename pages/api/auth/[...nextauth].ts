@@ -5,9 +5,9 @@
 import NextAuth, { NextAuthOptions, User as NextAuthUser } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import {
-  MOCK_CREDENTIALS,
+  getCredentials,
   getUserByEmail,
-} from "@/lib/mock/data";
+} from "@/lib/mock/store";
 
 // Extender tipos de NextAuth para incluir role y projectId
 declare module "next-auth" {
@@ -60,7 +60,7 @@ export const authOptions: NextAuthOptions = {
         //   return { id: data.id, name: data.name, email: data.email, role: data.role, projectId: data.project_id }
         // -------------------------------------------------------
 
-        const storedPassword = MOCK_CREDENTIALS[credentials.email];
+        const storedPassword = getCredentials()[credentials.email];
         if (!storedPassword || storedPassword !== credentials.password) {
           return null;
         }
