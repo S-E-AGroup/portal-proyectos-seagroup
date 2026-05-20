@@ -19,7 +19,7 @@ interface NuevoProyectoProps {
 }
 
 const inputClass =
-  "w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors";
+  "w-full px-3 py-2.5 text-sm text-slate-800 bg-white border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors";
 const labelClass = "block text-xs font-medium text-slate-600 mb-1.5";
 
 export default function NuevoProyecto({ clientes }: NuevoProyectoProps) {
@@ -123,7 +123,7 @@ export default function NuevoProyecto({ clientes }: NuevoProyectoProps) {
                           onChange={handleChange}
                           required
                           placeholder="Ej: Planta de Tratamiento Mina Cóndor"
-                          className={inputClass}
+                          className={inputClass + " text-slate-800"}
                         />
                       </div>
 
@@ -165,7 +165,7 @@ export default function NuevoProyecto({ clientes }: NuevoProyectoProps) {
                             onChange={handleChange}
                             required
                             placeholder="Ej: Región de Atacama, Chile"
-                            className={inputClass}
+                            className={inputClass + " text-slate-800"}
                           />
                         </div>
                         <div>
@@ -176,7 +176,7 @@ export default function NuevoProyecto({ clientes }: NuevoProyectoProps) {
                             value={form.startDate}
                             onChange={handleChange}
                             required
-                            className={inputClass}
+                            className={inputClass + " text-slate-800"}
                           />
                         </div>
                       </div>
