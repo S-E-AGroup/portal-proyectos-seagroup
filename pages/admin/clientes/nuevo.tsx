@@ -112,7 +112,7 @@ export default function NuevoCliente({ proyectos }: NuevoClienteProps) {
                         onChange={handleChange}
                         required
                         placeholder="Ej: Empresa Minera Norte"
-                        className="w-full pl-9 pr-3 py-2.5 text-sm text-slate-800 bg-white border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
+                        className="w-full pl-9 pr-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors" style={{color:"#1e293b",backgroundColor:"#ffffff"}}
                       />
                     </div>
                   </div>
@@ -131,7 +131,7 @@ export default function NuevoCliente({ proyectos }: NuevoClienteProps) {
                         onChange={handleChange}
                         required
                         placeholder="cliente@empresa.cl"
-                        className="w-full pl-9 pr-3 py-2.5 text-sm text-slate-800 bg-white border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
+                        className="w-full pl-9 pr-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors" style={{color:"#1e293b",backgroundColor:"#ffffff"}}
                       />
                     </div>
                   </div>
@@ -151,7 +151,7 @@ export default function NuevoCliente({ proyectos }: NuevoClienteProps) {
                         required
                         minLength={6}
                         placeholder="Mínimo 6 caracteres"
-                        className="w-full pl-9 pr-10 py-2.5 text-sm text-slate-800 bg-white border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors"
+                        className="w-full pl-9 pr-10 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors" style={{color:"#1e293b",backgroundColor:"#ffffff"}}
                       />
                       <button
                         type="button"
@@ -178,7 +178,7 @@ export default function NuevoCliente({ proyectos }: NuevoClienteProps) {
                         name="projectId"
                         value={form.projectId}
                         onChange={handleChange}
-                        className="w-full pl-9 pr-3 py-2.5 text-sm text-slate-800 border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors bg-white appearance-none"
+                        className="w-full pl-9 pr-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors bg-white appearance-none" style={{color:"#1e293b",backgroundColor:"#ffffff"}}
                       >
                         <option value="">Sin proyecto asignado aún</option>
                         {proyectos.map((p) => (

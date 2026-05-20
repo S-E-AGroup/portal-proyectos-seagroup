@@ -18,8 +18,7 @@ interface NuevoProyectoProps {
   clientes: Pick<User, "id" | "name" | "email">[];
 }
 
-const inputClass =
-  "w-full px-3 py-2.5 text-sm text-slate-800 bg-white border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors";
+const inputClass = "w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:border-cyan-500 transition-colors";
 const labelClass = "block text-xs font-medium text-slate-600 mb-1.5";
 
 export default function NuevoProyecto({ clientes }: NuevoProyectoProps) {
