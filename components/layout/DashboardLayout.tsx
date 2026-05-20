@@ -4,7 +4,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 import {
@@ -12,6 +11,9 @@ import {
   FolderOpen,
   LogOut,
   Menu,
+  X,
+  Droplets,
+  Settings,
   ChevronRight,
 } from "lucide-react";
 
@@ -60,18 +62,17 @@ export default function DashboardLayout({
 
   const Sidebar = () => (
     <aside className="flex flex-col h-full bg-[#0a1628] text-white w-64 min-h-screen">
-      {/* Logo oficial */}
-      <div className="flex items-center justify-center px-6 py-5 border-b border-white/10">
-        <Link href={isAdmin ? "/admin" : "/dashboard"}>
-          <Image
-            src="/logo_seagroup.png"
-            alt="SEA Group"
-            width={130}
-            height={52}
-            className="h-12 w-auto object-contain"
-            priority
-          />
-        </Link>
+      {/* Logo */}
+      <div className="flex items-center gap-3 px-6 py-5 border-b border-white/10">
+        <div className="bg-cyan-500 rounded-lg p-1.5">
+          <Droplets size={20} className="text-white" />
+        </div>
+        <div>
+          <span className="font-bold text-white text-sm tracking-wide">
+            SeaGroup
+          </span>
+          <p className="text-xs text-slate-400">Portal de Proyectos</p>
+        </div>
       </div>
 
       {/* Nav */}

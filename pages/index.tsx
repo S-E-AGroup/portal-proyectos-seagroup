@@ -4,7 +4,6 @@
 
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
 import {
   Droplets,
   Shield,
@@ -68,17 +67,14 @@ export default function LandingPage() {
         <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a1628]/95 backdrop-blur-sm border-b border-white/10">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
-              {/* Logo */}
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/logo_seagroup.png"
-                  alt="SEA Group"
-                  width={120}
-                  height={48}
-                  className="h-10 w-auto object-contain"
-                  priority
-                />
-              </Link>
+              <div className="flex items-center gap-2.5">
+                <div className="bg-cyan-500 rounded-lg p-1.5">
+                  <Droplets size={20} className="text-white" />
+                </div>
+                <span className="font-bold text-white text-lg tracking-wide">
+                  SeaGroup
+                </span>
+              </div>
               <div className="hidden md:flex items-center gap-8">
                 <a
                   href="#servicios"
@@ -303,16 +299,12 @@ export default function LandingPage() {
         {/* ---- FOOTER ---- */}
         <footer className="bg-[#0a1628] text-slate-400 py-8">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            {/* Logo footer */}
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/logo_seagroup.png"
-                alt="SEA Group"
-                width={90}
-                height={36}
-                className="h-8 w-auto object-contain opacity-90"
-              />
-            </Link>
+            <div className="flex items-center gap-2">
+              <div className="bg-cyan-500 rounded-lg p-1">
+                <Droplets size={14} className="text-white" />
+              </div>
+              <span className="text-white font-semibold text-sm">SeaGroup</span>
+            </div>
             <p className="text-xs text-center">
               © {new Date().getFullYear()} SeaGroup. Todos los derechos
               reservados.
