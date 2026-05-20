@@ -11,7 +11,7 @@ import { ArrowLeft, CheckCircle } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Card, CardContent, CardHeader, SectionTitle } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth";
-import { getClientUsers } from "@/lib/mock/store";
+import { getClientUsers } from "@/lib/supabase-store";
 import { User } from "@/types";
 
 interface NuevoProyectoProps {
@@ -286,7 +286,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const result = await requireAdmin(ctx);
   if ("redirect" in result) return result as { redirect: { destination: string; permanent: boolean } };
 
-  const clientes = getClientUsers().map((u) => ({
+  const clientes = (await getClientUsers()).map((u) => ({
     id: u.id,
     name: u.name,
     email: u.email,

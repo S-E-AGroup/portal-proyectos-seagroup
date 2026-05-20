@@ -25,7 +25,7 @@ import {
 import { FlowChart, PhChart } from "@/components/charts/WaterCharts";
 import { Project } from "@/types";
 import { requireAuth } from "@/lib/auth";
-import { getProjectByClientId, getProjectById } from "@/lib/mock/store";
+import { getProjectByClientId, getProjectById } from "@/lib/supabase-store";
 import {
   formatDate,
   formatDateShort,
@@ -367,8 +367,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   // Cliente: busca su proyecto
   const project = session.user.projectId
-    ? getProjectById(session.user.projectId)
-    : getProjectByClientId(session.user.id);
+    ? await getProjectById(session.user.projectId)
+    : await getProjectByClientId(session.user.id);
 
   if (!project) {
     return { redirect: { destination: "/login", permanent: false } };

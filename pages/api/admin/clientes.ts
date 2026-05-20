@@ -7,7 +7,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { createClientUser, getClientUsers, getUserByEmail } from "@/lib/mock/store";
+import { createClientUser, getClientUsers, getUserByEmail } from "@/lib/supabase-store";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions);
@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // Verificar que el email no esté en uso
-    const existing = getUserByEmail(email);
+    const existing = await getUserByEmail(email);
     if (existing) {
       return res.status(400).json({ error: "Ya existe un usuario con ese email" });
     }

@@ -2,7 +2,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { getProjectById } from "@/lib/mock/store";
+import { getProjectById } from "@/lib/supabase-store";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions);
@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { id } = req.query as { id: string };
 
   if (req.method === "GET") {
-    const project = getProjectById(id);
+    const project = await getProjectById(id);
     if (!project) return res.status(404).json({ error: "Proyecto no encontrado" });
     return res.status(200).json({ project });
   }

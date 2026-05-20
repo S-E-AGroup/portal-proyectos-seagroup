@@ -11,7 +11,7 @@ import { ArrowLeft, User, Mail, Lock, FolderOpen, Eye, EyeOff, CheckCircle } fro
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Card, CardContent, CardHeader, SectionTitle } from "@/components/ui";
 import { requireAdmin } from "@/lib/auth";
-import { getAllProjects } from "@/lib/mock/store";
+import { getAllProjects } from "@/lib/supabase-store";
 import { Project } from "@/types";
 
 interface NuevoClienteProps {
@@ -230,7 +230,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const result = await requireAdmin(ctx);
   if ("redirect" in result) return result as { redirect: { destination: string; permanent: boolean } };
 
-  const proyectos = getAllProjects().map((p) => ({ id: p.id, name: p.name }));
+  const proyectos = (await getAllProjects()).map((p) => ({ id: p.id, name: p.name }));
 
   return { props: { proyectos } };
 };

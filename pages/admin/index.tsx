@@ -19,7 +19,7 @@ import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Card, CardContent, CardHeader, SectionTitle, StatCard } from "@/components/ui";
 import { Project, User } from "@/types";
 import { requireAdmin, formatDate, getStatusColor } from "@/lib/auth";
-import { getAllProjects, getClientUsers } from "@/lib/mock/store";
+import { getAllProjects, getClientUsers } from "@/lib/supabase-store";
 
 interface AdminPanelProps {
   projects: Project[];
@@ -187,8 +187,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      projects: JSON.parse(JSON.stringify(getAllProjects())),
-      totalClients: getClientUsers().length,
+      projects: JSON.parse(JSON.stringify(await getAllProjects())),
+      totalClients: (await getClientUsers()).length,
     },
   };
 };

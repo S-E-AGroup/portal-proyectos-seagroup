@@ -7,7 +7,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { createProject, getAllProjects, getUserById } from "@/lib/mock/store";
+import { createProject, getAllProjects, getUserById } from "@/lib/supabase-store";
 import { WaterType, ProjectStatus } from "@/types";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -40,7 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // Obtener nombre del cliente
-    const clientUser = getUserById(clientId);
+    const clientUser = await getUserById(clientId);
     if (!clientUser) {
       return res.status(400).json({ error: "Cliente no encontrado" });
     }

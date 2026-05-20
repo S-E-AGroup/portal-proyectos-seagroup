@@ -12,7 +12,7 @@ import Modal from "@/components/ui/Modal";
 import { FlowChart, PhChart, MultiParamChart } from "@/components/charts/WaterCharts";
 import { Project, Visit, WaterParameters, Sample, Equipment } from "@/types";
 import { requireAdmin, formatDate, formatDateShort, getStatusColor, getEquipmentStatusColor, getEquipmentStatusLabel, getWaterTypeLabel } from "@/lib/auth";
-import { getProjectById } from "@/lib/mock/store";
+import { getProjectById } from "@/lib/supabase-store";
 
 interface Props { project: Project; }
 
@@ -401,7 +401,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const result = await requireAdmin(ctx);
   if ("redirect" in result) return result as { redirect: { destination: string; permanent: boolean } };
   const { id } = ctx.params as { id: string };
-  const project = getProjectById(id);
+  const project = await getProjectById(id);
   if (!project) return { notFound: true };
   return { props: { project: JSON.parse(JSON.stringify(project)) } };
 };
